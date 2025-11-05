@@ -5,8 +5,8 @@ import org.springframework.beans.factory.BeanRegistrarDsl
 class MyBeansRegistrar : BeanRegistrarDsl({
     registerBean<Foo>("foo")
     registerBean("boo"){Boo()}
-    registerBean(::fooRouter)
-    registerBean(::booRouter)
-    registerBean(::newRouter)
+    registerBean{fooRouter(bean())}
+    registerBean{booRouter(bean<Boo>("boo"))}
+    registerBean(name = "newRouter"){newRouter()}
 }
 )
