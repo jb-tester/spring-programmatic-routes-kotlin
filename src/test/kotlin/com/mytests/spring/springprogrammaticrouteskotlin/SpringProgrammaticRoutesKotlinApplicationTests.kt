@@ -25,7 +25,11 @@ class SpringProgrammaticRoutesKotlinApplicationTests(@Autowired private val foo:
         mockMvc.get("/new/test/{id}", 1).andExpect {status { isOk() }
             content { string("get new test with id = 1")}
     }}
-
+    @Test
+    fun newRouteTestWithHandler() {
+        mockMvc.get("/new/test/handler/{pv}", "foo").andExpect {status { isOk() }
+            content { string("specified pathvar = foo")}
+        }}
     @Test
     fun fooRouteTest() {
         mockMvc.get("/foo").andExpect {status { isOk() }
